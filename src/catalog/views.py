@@ -47,6 +47,8 @@ class GoodCreateView(generic.CreateView):
             for img in images:
                 ImageModel.objects.create(good=new_good, img=img,
                                           short_description=form.cleaned_data['short_description'])
-        return redirect('/catalog/categories')
+            return redirect('/catalog/categories')
+        return render(request, 'catalog/good_form.html',
+                      context={'form': form})
 
 

@@ -25,6 +25,8 @@ class GoodCreateForm(forms.ModelForm):
     images = MultipleFileField()
     short_description = forms.CharField(max_length=100, empty_value="")
     name = forms.CharField(max_length=100)
+    description = forms.Textarea()
+    price = forms.DecimalField(max_digits=7, decimal_places=2)
 
     class Meta:
         model = GoodModel
