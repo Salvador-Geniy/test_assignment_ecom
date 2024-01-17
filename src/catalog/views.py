@@ -44,11 +44,8 @@ class GoodCreateView(generic.CreateView):
                 description=form.cleaned_data['description'],
                 price=form.cleaned_data['price']
             )
-            for img in images:
-                ImageModel.objects.create(good=new_good, img=img,
-                                          short_description=form.cleaned_data['short_description'])
+            ImageModel.objects.bulk_create([ImageModel(
+                good=new_good, img=img, short_description=form.cleaned_data['short_description']) for img in images])
             return redirect('/catalog/categories')
         return render(request, 'catalog/good_form.html',
                       context={'form': form})
-
-
