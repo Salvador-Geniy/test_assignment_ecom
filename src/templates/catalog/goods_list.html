@@ -1,0 +1,26 @@
+{% extends 'catalog/layout.html' %}
+{% load static %}
+
+{% block title %}Goods from category{{ name }}{% endblock %}
+
+{% block content %}
+<main>
+    <section>
+	<div class="container">
+	    <h1>Goods from category{{ name }}</h1>
+	</div>
+    </section>
+	<div>
+		{% for good in object_list %}
+		<div>
+            <h3>{{ good.name }}</h3>
+			<p>Description {{ good.description }}</p>
+			<p>Price {{ good.price }}</p>
+            {% for image in good.images.all %}
+                <img src="/media/{{ image.img }}">
+            {% endfor %}
+		</div>
+		{% endfor %}
+    </div>
+</main>
+{% endblock %}
